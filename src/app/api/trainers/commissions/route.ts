@@ -10,6 +10,10 @@ const createCommissionSchema = z.object({
   year: z.coerce.number().int().min(2000),
   notes: z.string().optional(),
 });
+const markPaidSchema = z.object({
+  commissionId: z.string().min(1),
+  isPaid: z.boolean().optional(),
+});
 
 import { prisma } from '@/lib/prisma';
 import { auth } from '@/lib/auth';
@@ -214,7 +218,7 @@ export async function PATCH(request: NextRequest) {
 
     const { gymId } = await getGymContext(request);
 
-    const parsedBody = await parseJsonBody(request, mutatingBodySchema);
+   const parsedBody = await parseJsonBody(request, markPaidSchema); 
     if (!parsedBody.ok) return parsedBody.response;
     const body = parsedBody.data as any;
     const { commissionId, isPaid } = body;
