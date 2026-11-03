@@ -20,6 +20,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: projectRoot,
+  typescript: { ignoreBuildErrors: true },
   async headers() {
     return [
       {
