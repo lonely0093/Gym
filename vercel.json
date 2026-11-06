@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "npx prisma db push && npm run vercel-build",
   "outputDirectory": ".next",
   "installCommand": "npm ci",
   "framework": "nextjs",
